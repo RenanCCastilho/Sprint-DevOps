@@ -98,4 +98,4 @@ https://api.example.com/api/agendamentos/13
 
 ## DELETE 
 https://api.example.com/api/agendamentos/13 
-### Descrição: Deleta o agendamento selecionado. No caso deletará o usuário com o id = 13.
+### Descrição: Deleta o agendamento selecionado. No caso deletará o agendamento com o id = 13.

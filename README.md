@@ -1,6 +1,6 @@
 # Sprint3-DevOps
 
-O arquivo "Sprint3" esta com o código fonte da API em java SpringBoot.
+O arquivo "Sprint3.zip" esta com o código fonte da API em java SpringBoot.
 
 
 # Lista de Endpoints

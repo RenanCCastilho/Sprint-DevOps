@@ -1,7 +1,5 @@
 # Sprint-DevOps
 
-O arquivo "PlanIt" esta com o código fonte da API em java SpringBoot.
-
 
 # Lista de Endpoints
 ## ***Empresas***

@@ -1,4 +1,4 @@
-# Sprint3-DevOps
+# Sprint-DevOps
 
 O arquivo "EasyPlan" esta com o código fonte da API em java SpringBoot.
 

@@ -1,144 +1,65 @@
-# Sprint-DevOps
+# Find It API — Entrega Sprint (DevOps)
 
+![Java](https://img.shields.io/badge/Java-17-ED8B00?logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.1-6DB33F?logo=springboot&logoColor=white)
+![Azure](https://img.shields.io/badge/Azure-0078D4?logo=microsoftazure&logoColor=white)
+![Oracle](https://img.shields.io/badge/Oracle_DB-F80000?logo=oracle&logoColor=white)
 
-# Lista de Endpoints
-## ***Empresas***
-## GET 
-https://api.example.com/api/empresas
-### Descrição: Consulta a lista de empresas cadastradas.
-### Exemplo de resposta:
-          
-       {
-              "id": 19,
-              "nome": "Silvio Hairs",
-              "segmento": "Cabeleireiro",
-              "endereco": "Av Imirim",
-              "km": 4.0,
-              "favorito": false
-          }
+Esta é a entrega da sprint de **DevOps Tools & Cloud Computing** do projeto **Find It**. Ela traz a API, o script do banco e a configuração do pipeline de CI/CD para a nuvem.
 
-## POST
-https://api.example.com/api/empresas 
-### Descrição: Cadastra uma nova empresa.
-### Exemplo de solicitação:
+> Para a descrição completa do produto, veja **[FindIt-API](https://github.com/RenanCCastilho/FindIt-API)**.
 
-      {
-        "id": 21,
-        "nome": "Transported Kolirio",
-        "segmento": "Frete",
-        "endereco": "AV Di Ines Silva",
-        "km": 9.0,
-        "favorito": false
-      },
+## Conteúdo do repositório
 
+| Arquivo | Descrição |
+|---|---|
+| `src/` | Código da API (Spring Boot) |
+| [`DDL.txt`](DDL.txt) | Script de criação das tabelas no Oracle |
+| [`YAML.txt`](YAML.txt) | Definição do pipeline de CI/CD |
+| [`Config_ci_cd.pdf`](Config_ci_cd.pdf) | Passo a passo da configuração do CI/CD |
+| [`EasyPlan.pdf`](EasyPlan.pdf) | Documentação do projeto |
 
-## PUT 
-https://api.example.com/api/empresas/21
-### Descrição: Atualiza informações sobre a empresa cadastrada.
-### Exemplo de solicitação:
+## Endpoints
 
-      {
-        "id": 21,
-        "nome": "Transported Kolirio",
-        "segmento": "Frete",
-        "endereco": "AV Di Ines Silva",
-        "km": 9.0,
-        "favorito": false
-      },
+| Recurso | Rota base | Operações |
+|---|---|---|
+| Empresas | `/api/empresas` | `GET`, `POST`, `PUT /{id}`, `DELETE /{id}` |
+| Usuários | `/api/usuarios` | `GET`, `POST`, `PUT /{id}`, `DELETE /{id}` |
+| Agendamentos | `/api/agendamentos` | `GET`, `POST`, `PUT /{id}`, `DELETE /{id}` |
 
+**Exemplo — cadastrar empresa**
 
-## DELETE 
-https://api.example.com/api/empresas/21
-### Descrição: Deleta a empresa selecionada. No caso deletará a empresa com o id = 21.
-## ***Usuarios***
-## GET 
-https://api.example.com/api/usuarios
-### Descrição: Consulta a lista de usuarios cadastrados. 
-### Exemplo de resposta:
-          
-             {
-                  "id": 1,
-                  "nome": "Renan Costa",
-                  "telefone": "999999999",
-                  "email": "renan@fiap.com.br",
-                  "cpf": "123-456-789.00"
-              }
+```json
+POST /api/empresas
+{
+  "nome": "Silvio Hairs",
+  "segmento": "Cabeleireiro",
+  "endereco": "Av. Imirim",
+  "km": 4.0,
+  "favorito": false
+}
+```
 
-## POST
-https://api.example.com/api/usuarios
-### Observação: Colocar id de um usuario ja cadastrad0!
-### Descrição: Cadastra um novo usuario.
-### Exemplo de solicitação:
+**Exemplo — criar agendamento** (use o id de uma empresa já cadastrada)
 
-           {
-                "nome": "Renan Costa",
-                "telefone": "999999999",
-                "email": "renan@fiap.com.br",
-                "cpf": "123-456-789.00"
-          }
+```json
+POST /api/agendamentos
+{
+  "empresa": { "id": 6 },
+  "dataHora": "10-09-2023 16:00:00"
+}
+```
 
+## Como executar
 
-## PUT 
-https://api.example.com/api/usuarios/1
-### Descrição: Atualiza informações sobre o usuario cadastrado.
-### Exemplo de solicitação:
-      {
-      "nome": "Renan Castilho",
-      "telefone": "999999999",
-      "email": "renan@fiap.com.br",
-      "cpf": "123-456-789.00"
-      }
+1. Crie as tabelas executando o [`DDL.txt`](DDL.txt) no seu banco Oracle.
+2. Rode a aplicação:
 
+```bash
+export DB_USERNAME=seu_usuario DB_PASSWORD=sua_senha
+./mvnw spring-boot:run
+```
 
-## DELETE 
-https://api.example.com/api/usuarios/1 
-### Descrição: Deleta o usuario selecionado. No caso deletará o usuario com o id = 1.
+---
 
-## ***Agendamentos***
-## GET 
-https://api.example.com/api/agendamentos
-### Descrição: Consulta a lista de agendamentos cadastrados. 
-### Exemplo de resposta:
-          
-    {
-        "id": 13,
-        "empresa": {
-            "id": 6,
-            "nome": "Piratas",
-            "segmento": "Barbeiro",
-            "endereco": "Rua Dário Ribeiro",
-            "km": 5.0,
-            "favorito": false
-        },
-       "dataHora": "10-09-2023 16:00:00"
-    },
-
-## POST
-https://api.example.com/api/agendamentos
-### Observação: Colocar id de uma empresa ja cadastrada!
-### Descrição: Cadastra um novo agendamento.
-### Exemplo de solicitação:
-
-    {
-        "empresa":{ "id": 13
-    },
-        "dataHora": "10-09-2023 16:00:00"
-    }
-
-
-## PUT 
-https://api.example.com/api/agendamentos/13
-### Descrição: Atualiza informações sobre o agendamento cadastrado.
-### Exemplo de solicitação:
-
-    {
-        "empresa":{ "id": 13
-    },
-        "dataHora": "20-10-2023 19:40:00"
-    }
-
-
-## DELETE 
-https://api.example.com/api/agendamentos/13 
-### Descrição: Deleta o agendamento selecionado. No caso deletará o agendamento com o id = 13.
-
+Projeto acadêmico desenvolvido na **FIAP** (2023).
